@@ -1,5 +1,28 @@
 body {
     background-color: rgb(243, 193, 253);
+    margin: 0;
+}
+
+
+/* Cabeçalho da Página */
+.cabecalho {
+    border: 2px solid rgb(255, 0, 0);
+    padding: 25px;
+    display: flex;
+    flex-direction: row;
+}
+
+.selectBoard {
+    border: 2px solid rgb(18, 74, 240);
 
 }
 
+.user {
+    border: 2px solid rgb(255, 0, 195);
+
+}
+
+.vmode {
+    border: 2px solid rgb(246, 255, 0);
+
+}
