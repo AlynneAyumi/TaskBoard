@@ -8,8 +8,37 @@
 </head>
 <body>
     
-    <main>
+    <header class="cabecalho">
+        Cabeçalho
+        <div class="selectBoard">
+            Selecionar Quadro de Tarefas
+        </div>
+        <div class="user">
+            Usuário |
+            Logout
+        </div>
+        <div class="vmode">
+            Light/Dark Mode
+        </div>
 
+    </header>
+    <main>
+        Principal
+        <div class="mainBoard">
+            Visualização
+            <div class="board">
+                Quadro
+                <div class="task">
+                    Tarefa 1
+                </div>
+                <div class="task">
+                    Tarefa 2
+                </div>
+                <input type="button" value="Nova Tarefa" class="newTask" onclick="newTask()">
+            </div>
+
+            <input type="button" value="Nova Coluna" class="newBoard" onclick="newBoard()">
+        </div>
     </main>
     
     <script src="script.js"></script>
