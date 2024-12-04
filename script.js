@@ -34,8 +34,11 @@ fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard
 // com as colunas e tarefas associadas a ele, permitindo o acompanhamento do progresso das atividades.
 const selectedBoard = document.getElementById('selectedBoard');
 
-selectedBoard.addEventListener('change', () => {
-  console.log("Teste");
-})
+selectedBoard.addEventListener('change', changeBoard);
+
+function changeBoard(e){
+  console.log("Testeeee");
+
+};
 
 
