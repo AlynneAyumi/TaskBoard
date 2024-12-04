@@ -1,6 +1,5 @@
 
 // Armazena o nome dos quadros disponíveis
-
 fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Boards')
   .then(response => response.json())
   .then(dados => {
@@ -36,8 +35,23 @@ const selectedBoard = document.getElementById('selectedBoard');
 
 selectedBoard.addEventListener('change', changeBoard);
 
-function changeBoard(e){
-  console.log("Testeeee");
+function changeBoard(){
+
+  var selectElement = document.getElementById('selectedBoard'); // Obtém o elemento select pelo seu ID
+
+  var selectedIndex = selectElement.selectedIndex;  // Obtém o índice da opção selecionada
+
+  var boardId = selectElement.options[selectedIndex].value;  // Obtém o valor da opção selecionada
+
+  console.log("O valor selecionado é: " + boardId);
+
+  fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/Board?BoardId=${boardId}`)
+  .then(response => response.json())
+  .then(dados => {
+
+    console.log(dados);
+  })
+  .catch(error => console.error("Erro:", error));
 
 };
 
