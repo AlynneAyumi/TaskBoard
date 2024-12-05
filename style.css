@@ -3,6 +3,9 @@ body {
     margin: 0;
 }
 
+.dark {
+    background-color: rgb(62, 62, 62);
+}
 
 /* Cabeçalho da Página */
 .cabecalho {

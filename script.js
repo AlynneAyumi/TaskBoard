@@ -6,7 +6,7 @@ fetch('https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard
 
     const boardNames = dados.map(board => ({id: board.Id, nome: board.Name}));
 
-    console.log(boardNames);
+    //console.log(boardNames);
 
      // Coloca o nome dos quadros dentro da caixa de seleção
     if (boardNames != null) {
@@ -55,4 +55,38 @@ function changeBoard(){
 
 };
 
+// Verifica qual o tema salvo na API
+const personId = 1;  // -- ID  de usuário temporário, apagar quando for possivel fazer login --
+var themeId;         // ID do tema
 
+fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/PersonConfigById?PersonId=${personId}`)
+  .then(response => response.json())
+  .then(dados => {
+
+    themeId = dados.DefaultThemeId;          // Salva o tema salvo
+
+    if (dados.DefaultThemeId == 1) {         // Modifica o tema de acordo com o salvo na API
+        document.body.classList.add("dark"); 
+    }
+  })
+
+
+// Função de troca de tema / salvar tema na API
+const button = document.getElementById("themeButton").addEventListener("click", async () => {
+
+    document.body.classList.toggle("dark");   // Alterna o tema
+
+    themeId = (themeId == 1 ? 2 : 1);         // Alterna o ID do tema
+
+    // Modifica na API o tema salvo para o usuário
+    await fetch(`https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS/rest/TaskBoard/ConfigPersonTheme?PersonId=${personId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ "ThemeId": themeId })
+
+    })
+    .then(response => response)
+    .catch(error => console.error("Erro:", error));
+});
