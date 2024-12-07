@@ -1,31 +1,71 @@
-body {
-    background-color: rgb(243, 193, 253);
-    margin: 0;
+:root {
+    --primary-color: #f9f9f9;
+    --secondary-color: #B0E0E6;
+    --font-color: #333;
+    --button-color: #ffffff;
 }
 
 .dark {
-    background-color: rgb(62, 62, 62);
+    --primary-color: rgb(32, 33, 36);
+    --secondary-color: rgb(48, 49, 52);
+    --font-color: rgb(200, 200, 200);
+    --button-color: rgb(255, 255, 255);
+}
+
+body {
+    background-color: var(--primary-color);
+    font-family: Arial, sans-serif;
+    color: var(--font-color);
+    margin: 0;
+    transition: background-color 0.3s ease-in-out;
+    
 }
 
 /* Cabeçalho da Página */
 .cabecalho {
-    border: 2px solid rgb(255, 0, 0);
+    background-color: var(--secondary-color);
     padding: 25px;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out;
+
 }
 
 .selectBoard {
-    border: 2px solid rgb(18, 74, 240);
+    width: 30%;
+}
+
+.headerButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+select {
+    border-radius: 10px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+button, input[type="button"] {
+    background-color: var(--button-color);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
 }
 
 .user {
-    border: 2px solid rgb(255, 0, 195);
-
-}
-
-.vmode {
-    border: 2px solid rgb(246, 255, 0);
+    font-size: 16px;
+    cursor: pointer;
 
 }
