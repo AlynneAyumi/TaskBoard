@@ -5,6 +5,8 @@ const API_BASE_URL = "https://personal-ga2xwx9j.outsystemscloud.com/TaskBoard_CS
 // Variáveis e constantes
 const listBoardNames = document.getElementById('selectedBoard'); // <select id='selectedBoard'>
 const boardTitle     = document.getElementById('boardTitle'); // <h2 id='boardTitle'>
+const boardLayout = document.getElementById("board"); // <div id="board"></div>
+
 
 /*
  * Utilizar 'async' na declaração de uma função á torna assíncrona, 
@@ -64,50 +66,102 @@ function changeBoard(){
   .then(response => response.json())
   .then(dados => {
     boardTitle.innerHTML = dados.Name;
-    loadBoards(board.Id);
+    populateBoard(boardId);
   })
   .catch(error => console.error("Erro:", error));
 
 };
 
 
-async function loadBoard(id) {
+async function populateBoard(id) {
 
-    try {
-      
-      const response = await fetch(`${API_BASE_URL}/ColumnByBoardId?BoardId=${id}`);
-      if (!response.ok) {
+  try {
+    const response = await fetch(`${API_BASE_URL}/ColumnByBoardId?BoardId=${id}`)
+    if(!response.ok) {
         throw new Error("Erro ao carregar colunas");
-      }
-      const columns = await response.json();
-      populateColumns(columns);
-
-    } catch (error) {
-      console.error("Erro ao carregar colunas: ", error);
     }
+    const columns = await response.json();
+    populateColumns(columns);
+  } catch (error) {
+      console.error("Erro ao carregar colunas:", error);
+  }
 
 };
 
 function populateColumns(columns) {
 
+    boardLayout.innerHTML = "";
+
     columns.forEach((column) => {
+
+      const columnItem = document.createElement("article");
+      columnItem.className = "column-item";
+
+      const columnHeader = document.createElement("header");
+      columnHeader.className = "column-header";
+      columnHeader.innerHTML = `<h5>${column.Name}</h5>`;
+
+      const columnBody = document.createElement("div");
+      columnBody.className = "column-body";
+      columnBody.id = `tasks-${column.Id}`;
+      
+      /*
+      const btNewTask = document.createElement("button");
+      btNewTask.textContent = "Nova Tarefa";
+      btNewTask.className = "taskButton";
+      btNewTask.id = "test";              //`tasks-${column.Id}`;
+      */
+
+      columnItem.appendChild(columnHeader);
+      columnItem.appendChild(columnBody);
+
+      boardLayout.appendChild(columnItem);
+
+      fetchTasksByColumn(column.Id).then((res)=>{
+          addTasksToColumn(column.Id, res)
+      });
+
+      //boardLayout.appendChild(btNewTask);
 
     });
 }
 
 
+function fetchTasksByColumn(columnId) {
+  const endpoint = `${API_BASE_URL}/TasksByColumnId?ColumnId=${columnId}`;
+  console.log("TAREFAS POR COLUNA");
+  return fetch(endpoint)
+      .then((response) => {
+          if (!response.ok) {
+              throw new Error(`Erro ao buscar tasks para ColumnId ${columnId}: ${response.status}`);
+          }
+          return response.json();
+      })
+      .catch((error) => {
+          console.error(error);
+          return [];
+      });
+}
+
+
+function addTasksToColumn(columnId, tasks) {
+  const columnBody = document.getElementById(`tasks-${columnId}`);
+
+  tasks.forEach((task) => {
+      const taskItem = document.createElement("div");
+      taskItem.className = "task-item";
+      taskItem.innerHTML = `
+          <h6>${task.Title || "Sem título"}</h6>
+          <p>${task.Description || "Sem descrição"}</p>
+      `;
+      columnBody.appendChild(taskItem);
+  });
+}
 
 
 
-// Função inicial
-function init() {
-  loadBoards();
-};
 
-// Inicia os processos
-init();
-
-
+// Wendryel
 // Verifica qual o tema salvo na API
 const personId = 1;  // -- ID  de usuário temporário, apagar quando for possivel fazer login --
 var themeId;         // ID do tema
@@ -143,3 +197,12 @@ const button = document.getElementById("themeButton").addEventListener("click", 
     .then(response => response)
     .catch(error => console.error("Erro:", error));
 });
+
+
+// Função inicial
+function init() {
+  loadBoards();
+};
+
+// Inicia os processos
+init();

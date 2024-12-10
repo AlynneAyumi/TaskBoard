@@ -3,6 +3,8 @@
     --secondary-color: #B0E0E6;
     --font-color: #333;
     --button-color: #ffffff;
+    --bg_color_task: #b0e0e66c;
+    --txt_color_task: #333;
 }
 
 .dark {
@@ -10,6 +12,12 @@
     --secondary-color: rgb(48, 49, 52);
     --font-color: rgb(200, 200, 200);
     --button-color: rgb(255, 255, 255);
+    --bg_color_task: #d0d0d06c;
+    --txt_color_task: #333;
+}
+
+.hidden {
+    display: none;
 }
 
 body {
@@ -67,5 +75,59 @@ button, input[type="button"] {
 .user {
     font-size: 16px;
     cursor: pointer;
-
 }
+
+main {
+    text-align: center;
+    margin: 50px;
+}
+
+.taskButton {
+    font-size: 15px;
+}
+
+/*TESTE*/
+.column-item {
+    float: left;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    flex: 1;  
+    width: 500px;
+    background-color: #007bff5c;  
+  }
+  
+  .column-item {
+    border: 1px solid var(--font-color);
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 10px;
+    padding: 0;
+    width: 300px;
+  }
+  
+  .column-header {
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid var(--font-color);
+    border-radius: 5pt;
+  }
+  
+  .column-body {
+    padding: 10px;
+    min-height: 100px;
+    background-color: #fff;
+    border-radius: 5pt;
+  }
+  
+  .task-item {
+    border: 1px solid var(--font-color);
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: var(--bg_color_task);
+    border-radius: 5px;
+    color: var(--txt_color_task);
+  }

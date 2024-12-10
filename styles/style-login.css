@@ -23,7 +23,7 @@ body {
 }
 
 .login-container input {
-    width: 100%;
+    width: 90%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #ccc;
@@ -31,8 +31,8 @@ body {
 }
 
 .login-container button {
-    background-color: #007BFF;
-    color: white;
+    background-color: #9ee6f0;
+    color: #333;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -41,7 +41,7 @@ body {
 }
 
 .login-container button:hover {
-    background-color: #0056b3;
+    background-color: #71cbd6;
 }
 
 .error {

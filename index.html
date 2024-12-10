@@ -11,7 +11,7 @@
     <header class="cabecalho">
         <div class="selectBoard">
             <select id="selectedBoard">
-                <!-- <option value="Id" class="listOption"> Name </option> -->
+                <option value="" class="listOption" disabled selected>Selecione uma Board</option>
             </select>
         </div>
         <div class="headerButtons">
@@ -19,26 +19,18 @@
                 <button id="themeButton">Light/Dark</button>
             </div>
             <div class="user">
-                <input type="button" value="Logout">
+                <button id="logout" onclick="window.location.href='login.html'">Logout</button>
             </div>
         </div>
     </header>
     <main>
-        Principal
         <div class="mainBoard">
             <h2 id="boardTitle">Título da Board</h2>
-            <div class="board">
-                
-                <div class="task">
-                    Tarefa 1
-                </div>
-                <div class="task">
-                    Tarefa 2
-                </div>
-                <input type="button" value="Nova Tarefa" class="newTask" onclick="newTask()">
+            <div id="board" class="board">
+                <!-- <input type="button" value="Nova Tarefa" class="newTask" onclick="newTask()"> -->
             </div>
 
-            <input type="button" value="Nova Coluna" class="newBoard" onclick="newBoard()">
+            <!-- <input type="button" value="Nova Coluna" class="newBoard" onclick="newBoard()"> -->
         </div>
     </main>
     
